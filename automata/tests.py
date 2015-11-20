@@ -15,6 +15,9 @@ class ModelTestCase(unittest.TestCase):
     def test_should_create_final_state(self):
         state = FinalState()
         self.assertTrue(state.isFinalState())
+        self.assertFalse(state.isInitialState())
+        self.assertFalse(state.isNeutralState())
+        self.assertFalse(state.isErrorState())
 
     def test_should_create_neutral_state(self):
         state = NeutralState()
