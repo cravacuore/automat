@@ -9,6 +9,10 @@ class ModelTestCase(unittest.TestCase):
         state = InitialState()
         self.assertTrue(state.isInitialState())
 
+    def test_should_create_final_state(self):
+        state = FinalState()
+        self.assertTrue(state.isFinalState())
+
 class WebTestCase(unittest.TestCase):
 
     def test_index(self):
