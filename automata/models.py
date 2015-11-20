@@ -1,6 +1,10 @@
 
 class State:
 
+    def __init__(self, state0 = None, state1 = None):
+        self.transition_by_0 = state0
+        self.transition_by_1 = state1
+
     def isInitialState(self):
         return False
 
