@@ -33,6 +33,11 @@ class ModelTestCase(unittest.TestCase):
         self.assertFalse(state.isFinalState())
         self.assertFalse(state.isInitialState())
 
+    def test_should_have_no_transitions_when_is_created(self):
+        state = NeutralState()
+        self.assertIsNone(state.transition_by_0)
+        self.assertIsNone(state.transition_by_1)
+
 
 class WebTestCase(unittest.TestCase):
 
