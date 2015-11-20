@@ -8,6 +8,9 @@ class ModelTestCase(unittest.TestCase):
     def test_should_create_initial_state(self):
         state = InitialState()
         self.assertTrue(state.isInitialState())
+        self.assertFalse(state.isFinalState())
+        self.assertFalse(state.isNeutralState())
+        self.assertFalse(state.isErrorState())
 
     def test_should_create_final_state(self):
         state = FinalState()

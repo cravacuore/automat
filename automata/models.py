@@ -11,7 +11,7 @@ class State:
 		return False
 
 	def isErrorState(self):
-		return True
+		return False
 
 
 class InitialState(State):
