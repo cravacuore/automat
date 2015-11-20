@@ -1,11 +1,32 @@
 from __init__ import app
+from models import * 
 
 import unittest
 
 class ModelTestCase(unittest.TestCase):
 
-    def test(self):
-        pass
+    def test_should_create_initial_state(self):
+        state = InitialState()
+        self.assertTrue(state.isInitialState())
+        self.assertFalse(state.isFinalState())
+        self.assertFalse(state.isNeutralState())
+        self.assertFalse(state.isErrorState())
+
+    def test_should_create_final_state(self):
+        state = FinalState()
+        self.assertTrue(state.isFinalState())
+        self.assertFalse(state.isInitialState())
+        self.assertFalse(state.isNeutralState())
+        self.assertFalse(state.isErrorState())
+
+    def test_should_create_neutral_state(self):
+        state = NeutralState()
+        self.assertTrue(state.isNeutralState())
+
+    def test_should_create_error_state(self):
+        state = ErrorState()
+        self.assertTrue(state.isErrorState())
+
 
 class WebTestCase(unittest.TestCase):
 
