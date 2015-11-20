@@ -5,6 +5,7 @@ TP Final - Análisis de Algoritmos, Universidad Santo Tomás Seccional Tunja. 20
 * Flask
 * Python 2.7
 * AngularJS
+* TravisCI
 
 #### Contributors:
 * Seidler, Ezequiel Nicolás
