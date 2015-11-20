@@ -7,6 +7,9 @@ class State:
 	def isFinalState(self):
 		return False
 
+	def isNeutralState(self):
+		return False
+
 
 class InitialState(State):
 
@@ -20,3 +23,7 @@ class FinalState(State):
 		return True
 
 
+class NeutralState(State):
+
+	def isNeutralState(self):
+		return True
