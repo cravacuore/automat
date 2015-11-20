@@ -3,7 +3,7 @@ TP Final - Análisis de Algoritmos, Universidad Santo Tomás Seccional Tunja. 20
 
 ### Webapp using:
 * Flask
-* Python
+* Python 2.7
 * AngularJS
 
 #### Contributors:
