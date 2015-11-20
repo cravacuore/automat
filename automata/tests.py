@@ -1,4 +1,5 @@
 from __init__ import app
+from models import * 
 
 import unittest
 
