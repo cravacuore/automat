@@ -2,7 +2,12 @@ from __init__ import app
 
 import unittest
 
-class AutomataTestCase(unittest.TestCase):
+class ModelTestCase(unittest.TestCase):
+
+    def test(self):
+        pass
+
+class WebTestCase(unittest.TestCase):
 
     def test_index(self):
         tester   = app.test_client(self)
