@@ -38,6 +38,13 @@ class ModelTestCase(unittest.TestCase):
         self.assertIsNone(state.transition_by_0)
         self.assertIsNone(state.transition_by_1)
 
+    def test_should_can_replace_transition_states(self):
+        transition_by_0 = ErrorState()
+        transition_by_1 = FinalState()
+        state = NeutralState(transition_by_0, transition_by_1)
+        self.assertEqual(state.transition_by_0, transition_by_0)
+        self.assertEqual(state.transition_by_1, transition_by_1)
+
 
 class WebTestCase(unittest.TestCase):
 
