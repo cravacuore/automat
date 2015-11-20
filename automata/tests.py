@@ -29,6 +29,9 @@ class ModelTestCase(unittest.TestCase):
     def test_should_create_error_state(self):
         state = ErrorState()
         self.assertTrue(state.isErrorState())
+        self.assertFalse(state.isNeutralState())
+        self.assertFalse(state.isFinalState())
+        self.assertFalse(state.isInitialState())
 
 
 class WebTestCase(unittest.TestCase):
