@@ -13,6 +13,11 @@ class ModelTestCase(unittest.TestCase):
         state = FinalState()
         self.assertTrue(state.isFinalState())
 
+    def test_should_create_neutral_state(self):
+        state = NeutralState()
+        self.assertTrue(state.isNeutralState())
+
+
 class WebTestCase(unittest.TestCase):
 
     def test_index(self):
