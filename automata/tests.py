@@ -4,8 +4,9 @@ import unittest
 
 class ModelTestCase(unittest.TestCase):
 
-    def test(self):
-        pass
+    def test_should_create_initial_state(self):
+        state = InitialState()
+        self.assertTrue(state.isInitialState())
 
 class WebTestCase(unittest.TestCase):
 
