@@ -1,5 +1,3 @@
 'use strict';
 
-$(document).foundation();
-
-angular.module('Automata Graph Validator', [])
+angular.module('Automata Graph Validator', ['mm.foundation']);

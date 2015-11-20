@@ -1,4 +1,27 @@
 {% extends "layout.html" %}
 {% block content %}
   <h1>Hello World!</h1>
+  {% block table %}
+    <table>
+      <thead>
+        <tr>
+          <th width="150">Initial</th>
+          <th width="150">Final</th>
+          <th width="150">State</th>
+          <th width="50">0</th>
+          <th width="50">1</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>RadioButton</td>
+          <td>Checkbox</td>
+          <td>q1</td>
+          <td>Dd q1</td>
+          <td>Dd q2</td>
+        </tr>
+      </tbody>
+    </table>
+  {% endblock table %}
 {% endblock %}
+
