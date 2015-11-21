@@ -8,12 +8,14 @@
     {% endblock %}
   </head>
   <body>
-    <div class="callout large">
+    <br>
+    <div class="row">
       {% block content %}{% endblock %}
+      <hr>
+      <footer class="footer">
+        {% include 'partials/footer.html' %}
+      </footer>
     </div>
-    <footer class="footer">
-      {% include 'partials/footer.html' %}
-    </footer>
 
     {% include 'partials/scripts.html' %}
   </body>
