@@ -2,15 +2,9 @@
 <html ng-app="Automata Graph Validator">
   <head>
     {% block head %}
-      <link rel="stylesheet" href="/static/css/foundation.css">
+      <link rel="stylesheet" href="/static/css/foundation.min.css">
+      <link rel="stylesheet" href="/static/css/normalize.css">
       {# <link rel="stylesheet" href="/static/css/app.css"> #}
-
-      <script src="/static/lib/jquery/jquery-2.1.4.min.js"></script>
-      <script src="/static/lib/angular/angular.min.js"></script>
-      <script src="/static/js/app.js"></script>
-
-      <script src="/static/lib/foundation/mm-foundation-tpls-0.8.0.min.js"></script>
-      <script src="/static/lib/foundation/foundation.min.js"></script>
     {% endblock %}
   </head>
   <body>
@@ -20,5 +14,7 @@
     <footer class="footer">
       {% include 'partials/footer.html' %}
     </footer>
+
+    {% include 'partials/scripts.html' %}
   </body>
 </html>

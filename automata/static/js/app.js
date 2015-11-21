@@ -1,3 +1,6 @@
 'use strict';
 
-angular.module('Automata Graph Validator', ['mm.foundation']);
+var app = angular.module('Automata Graph Validator', ['mm.foundation']);
+
+angular.module('Automata Graph Validator').controller('HomeTabs', function($scope) {});
+
