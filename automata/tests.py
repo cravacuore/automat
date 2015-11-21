@@ -55,6 +55,12 @@ class ModelTestCase(unittest.TestCase):
         automata = self.create_automata()
         self.assertTrue(automata.validate("000010111"))
 
+    def test_should_raise_exception_when_validate_with_invalid_input(self):
+        automata = self.create_automata()
+        with self.assertRaises(Exception):
+            automata.validate("0010011")
+
+
     def create_automata(self):
         state0 = InitialState()
         state1 = NeutralState()
