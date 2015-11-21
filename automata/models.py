@@ -1,9 +1,8 @@
 
 class State:
 
-    def __init__(self, state0 = None, state1 = None):
-        self.transition_by_0 = state0
-        self.transition_by_1 = state1
+    def __init__(self):
+        self.transitions = {}
 
     def isInitialState(self):
         return False
@@ -13,6 +12,12 @@ class State:
 
     def isNeutralState(self):
         return False
+
+    def addTransition(self, symbol, state):
+        self.transitions[symbol] = state
+
+    def transition_state(self, symbol):
+        return self.transitions[symbol]
 
 
 class InitialState(State):

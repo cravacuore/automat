@@ -25,15 +25,16 @@ class ModelTestCase(unittest.TestCase):
 
     def test_should_have_no_transitions_when_is_created(self):
         state = NeutralState()
-        self.assertIsNone(state.transition_by_0)
-        self.assertIsNone(state.transition_by_1)
+        self.assertTrue(not state.transitions)
 
     def test_should_can_replace_transition_states(self):
         transition_by_0 = NeutralState()
         transition_by_1 = FinalState()
-        state = NeutralState(transition_by_0, transition_by_1)
-        self.assertEqual(state.transition_by_0, transition_by_0)
-        self.assertEqual(state.transition_by_1, transition_by_1)
+        state = NeutralState()
+        state.addTransition('0', transition_by_0)
+        state.addTransition('1', transition_by_1)
+        self.assertEqual(state.transition_state('0'), transition_by_0)
+        self.assertEqual(state.transition_state('1'), transition_by_1)
 
 
 class WebTestCase(unittest.TestCase):
