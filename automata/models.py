@@ -58,4 +58,8 @@ class Automata():
     def validate(self, input):
         for symbol in input:
             self.current_state = self.current_state.transition_state(symbol)
-        return self.current_state.is_final_state()
+        if(self.current_state.is_final_state()):
+            return self.current_state.is_final_state()
+        else:
+            raise Exception("Invalid input!")
+
