@@ -36,6 +36,10 @@ class ModelTestCase(unittest.TestCase):
         self.assertEqual(state.transition_state('0'), transition_by_0)
         self.assertEqual(state.transition_state('1'), transition_by_1)
 
+    def test_should_return_false_when_validate_symbol_without_transition(self):
+        state = NeutralState()
+        self.assertFalse(state.validate_symbol('0'))
+
 
 class WebTestCase(unittest.TestCase):
 
