@@ -4,16 +4,16 @@ class State:
     def __init__(self):
         self.transitions = {}
 
-    def isInitialState(self):
+    def is_initial_state(self):
         return False
 
-    def isFinalState(self):
+    def is_final_state(self):
         return False
 
-    def isNeutralState(self):
+    def is_neutral_state(self):
         return False
 
-    def addTransition(self, symbol, state):
+    def add_transition(self, symbol, state):
         self.transitions[symbol] = state
 
     def transition_state(self, symbol):
@@ -25,19 +25,19 @@ class State:
 
 class InitialState(State):
 
-    def isInitialState(self):
+    def is_initial_state(self):
         return True
 
 
 class FinalState(State):
 
-    def isFinalState(self):
+    def is_final_state(self):
         return True
 
 
 class NeutralState(State):
 
-    def isNeutralState(self):
+    def is_neutral_state(self):
         return True
 
 

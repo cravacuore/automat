@@ -7,21 +7,21 @@ class ModelTestCase(unittest.TestCase):
 
     def test_should_create_initial_state(self):
         state = InitialState()
-        self.assertTrue(state.isInitialState())
-        self.assertFalse(state.isFinalState())
-        self.assertFalse(state.isNeutralState())
+        self.assertTrue(state.is_initial_state())
+        self.assertFalse(state.is_final_state())
+        self.assertFalse(state.is_neutral_state())
 
     def test_should_create_final_state(self):
         state = FinalState()
-        self.assertTrue(state.isFinalState())
-        self.assertFalse(state.isInitialState())
-        self.assertFalse(state.isNeutralState())
+        self.assertTrue(state.is_final_state())
+        self.assertFalse(state.is_initial_state())
+        self.assertFalse(state.is_neutral_state())
 
     def test_should_create_neutral_state(self):
         state = NeutralState()
-        self.assertTrue(state.isNeutralState())
-        self.assertFalse(state.isFinalState())
-        self.assertFalse(state.isInitialState())
+        self.assertTrue(state.is_neutral_state())
+        self.assertFalse(state.is_final_state())
+        self.assertFalse(state.is_initial_state())
 
     def test_should_have_no_transitions_when_is_created(self):
         state = NeutralState()
@@ -31,8 +31,8 @@ class ModelTestCase(unittest.TestCase):
         transition_by_0 = NeutralState()
         transition_by_1 = FinalState()
         state = NeutralState()
-        state.addTransition('0', transition_by_0)
-        state.addTransition('1', transition_by_1)
+        state.add_transition('0', transition_by_0)
+        state.add_transition('1', transition_by_1)
         self.assertEqual(state.transition_state('0'), transition_by_0)
         self.assertEqual(state.transition_state('1'), transition_by_1)
 
@@ -42,7 +42,7 @@ class ModelTestCase(unittest.TestCase):
 
     def test_should_return_true_when_validate_symbol_with_transition(self):
         state = NeutralState()
-        state.addTransition('0', FinalState())
+        state.add_transition('0', FinalState())
         self.assertTrue(state.validate_symbol('0'))
 
     def test_should_can_add_states(self):
