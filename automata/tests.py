@@ -45,6 +45,12 @@ class ModelTestCase(unittest.TestCase):
         state.addTransition('0', FinalState())
         self.assertTrue(state.validate_symbol('0'))
 
+    def test_should_can_add_states(self):
+        state = InitialState()
+        automata = Automata()
+        automata.add_state(state)
+        self.assertTrue(state in automata.states)
+
 
 class WebTestCase(unittest.TestCase):
 
