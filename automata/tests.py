@@ -29,6 +29,21 @@ class ModelTestCase(unittest.TestCase):
     def test_should_create_error_state(self):
         state = ErrorState()
         self.assertTrue(state.isErrorState())
+        self.assertFalse(state.isNeutralState())
+        self.assertFalse(state.isFinalState())
+        self.assertFalse(state.isInitialState())
+
+    def test_should_have_no_transitions_when_is_created(self):
+        state = NeutralState()
+        self.assertIsNone(state.transition_by_0)
+        self.assertIsNone(state.transition_by_1)
+
+    def test_should_can_replace_transition_states(self):
+        transition_by_0 = ErrorState()
+        transition_by_1 = FinalState()
+        state = NeutralState(transition_by_0, transition_by_1)
+        self.assertEqual(state.transition_by_0, transition_by_0)
+        self.assertEqual(state.transition_by_1, transition_by_1)
 
 
 class WebTestCase(unittest.TestCase):
