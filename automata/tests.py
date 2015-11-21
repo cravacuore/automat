@@ -51,6 +51,29 @@ class ModelTestCase(unittest.TestCase):
         automata.add_state(state)
         self.assertTrue(state in automata.states)
 
+    def test_should_return_true_when_validate_with_valid_input(self):
+        automata = self.create_automata()
+        self.assertTrue(automata.validate("000010111"))
+
+    def create_automata(self):
+        state0 = InitialState()
+        state1 = NeutralState()
+        state2 = NeutralState()
+        state3 = FinalState()
+        state0.add_transition('0', state0)
+        state0.add_transition('1', state1)
+        state1.add_transition('0', state0)
+        state1.add_transition('1', state2)
+        state2.add_transition('1', state3)
+        automata = Automata()
+        automata.add_state(state0)
+        automata.add_state(state1)
+        automata.add_state(state2)
+        automata.add_state(state3)
+        return automata
+
+
+
 
 class WebTestCase(unittest.TestCase):
 
