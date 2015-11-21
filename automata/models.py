@@ -17,7 +17,10 @@ class State:
         self.transitions[symbol] = state
 
     def transition_state(self, symbol):
-        return self.transitions[symbol]
+        return self.transitions.get(symbol)
+
+    def validate_symbol(self, symbol):
+        return self.transitions.get(symbol) != None
 
 
 class InitialState(State):
