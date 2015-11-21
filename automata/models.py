@@ -14,9 +14,6 @@ class State:
     def isNeutralState(self):
         return False
 
-    def isErrorState(self):
-        return False
-
 
 class InitialState(State):
 
@@ -34,10 +31,3 @@ class NeutralState(State):
 
     def isNeutralState(self):
         return True
-
-
-class ErrorState(State):
-
-    def isErrorState(self):
-        return True
-

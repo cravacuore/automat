@@ -10,26 +10,16 @@ class ModelTestCase(unittest.TestCase):
         self.assertTrue(state.isInitialState())
         self.assertFalse(state.isFinalState())
         self.assertFalse(state.isNeutralState())
-        self.assertFalse(state.isErrorState())
 
     def test_should_create_final_state(self):
         state = FinalState()
         self.assertTrue(state.isFinalState())
         self.assertFalse(state.isInitialState())
         self.assertFalse(state.isNeutralState())
-        self.assertFalse(state.isErrorState())
 
     def test_should_create_neutral_state(self):
         state = NeutralState()
         self.assertTrue(state.isNeutralState())
-        self.assertFalse(state.isFinalState())
-        self.assertFalse(state.isInitialState())
-        self.assertFalse(state.isErrorState())
-
-    def test_should_create_error_state(self):
-        state = ErrorState()
-        self.assertTrue(state.isErrorState())
-        self.assertFalse(state.isNeutralState())
         self.assertFalse(state.isFinalState())
         self.assertFalse(state.isInitialState())
 
@@ -39,7 +29,7 @@ class ModelTestCase(unittest.TestCase):
         self.assertIsNone(state.transition_by_1)
 
     def test_should_can_replace_transition_states(self):
-        transition_by_0 = ErrorState()
+        transition_by_0 = NeutralState()
         transition_by_1 = FinalState()
         state = NeutralState(transition_by_0, transition_by_1)
         self.assertEqual(state.transition_by_0, transition_by_0)
