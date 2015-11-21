@@ -40,6 +40,11 @@ class ModelTestCase(unittest.TestCase):
         state = NeutralState()
         self.assertFalse(state.validate_symbol('0'))
 
+    def test_should_return_true_when_validate_symbol_with_transition(self):
+        state = NeutralState()
+        state.addTransition('0', FinalState())
+        self.assertTrue(state.validate_symbol('0'))
+
 
 class WebTestCase(unittest.TestCase):
 
