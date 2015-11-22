@@ -1,5 +1,6 @@
 
 class State:
+    name = "q1"
 
     def __init__(self, is_initial_state = False, is_final_state = False):
         self.transitions = {}
@@ -17,6 +18,9 @@ class State:
             return self.transitions.get(symbol)
         else:
             raise Exception("Invalid input!")
+
+    def __repr__(self):
+        return self.name
 
 
 class Automata():

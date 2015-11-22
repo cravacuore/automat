@@ -2,7 +2,6 @@
   <thead>
     <tr>
       <th width="150">Initial</th>
-      <th width="150">Neutral</th>
       <th width="150">Final</th>
       <th width="150">State</th>
       <th width="150">0</th>
@@ -13,7 +12,6 @@
     {% for state in automata.states %}
     <tr>
       <td><input name="radio" type="radio" {% if state.is_initial_state %}checked{% endif %}></input></td>
-      <td><input type="checkbox" {% if state.is_neutral_state %}checked{% endif %}></input></td>
       <td><input type="checkbox" {% if state.is_final_state %}checked{% endif %}></input></td>
       <td>{{ state }}</td>
       <td>
