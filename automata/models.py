@@ -41,11 +41,10 @@ class Automata():
             self.current_state = state
 
     def remove_state(self, state):
-        # TODO - Exception if state does not exists
-        self.states.remove(state)
+        if state is not None:
+            self.states.remove(state)
 
     def validate(self, input):
-        # TODO - Exception if input is empty
         for symbol in input:
             self.current_state = self.current_state.transition_state(symbol)
         if(self.current_state.is_final_state):

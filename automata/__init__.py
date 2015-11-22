@@ -47,8 +47,11 @@ def add_state():
 @app.route('/state/remove/<state>')
 def remove_state(state):
     state_to_remove = automata.get_state(state)
-    automata.remove_state(state_to_remove)
-    flash('State \'' + str(state_to_remove) + '\' has been removed', 'alert')
+    if state_to_remove is not None:
+        automata.remove_state(state_to_remove)
+        flash('State \'' + str(state_to_remove) + '\' has been removed', 'alert')
+    else:
+        flash('State selected to removal does not exist', 'warning')
     return redirect(url_for('index'))
 
 @app.route('/state/change/final/<state>')
