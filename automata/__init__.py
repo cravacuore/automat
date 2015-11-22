@@ -45,6 +45,17 @@ def change_state_initial(state):
     flash('State ' + str(state) + ' changed to Initial', 'info')
     return redirect(url_for('index'))
 
+@app.route('/transition/add/<origin>/<symbol>/<destination>')
+def add_transition(origin, symbol, destination):
+    origin_state      = automata.get_state(origin)
+    destination_state = automata.get_state(destination)
+    origin_state.add_transition(str(symbol), destination_state)
+    if destination_state == None:
+        flash('Transition removed', 'alert')
+    else:
+        flash('Added transition function: (' + str(origin_state) + ', ' + str(symbol) + ') = ' + str(destination_state), 'success')
+    return redirect(url_for('index'))
+
 if __name__ == "__main__":
     pass
 

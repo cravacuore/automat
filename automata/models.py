@@ -49,7 +49,8 @@ class Automata():
             if st != None:
                 if st.name == str(state):
                     return st
-                    
+        return None
+
     def make_initial_state(self, state):
         for st in self.states:
             if st != None:
@@ -57,3 +58,4 @@ class Automata():
                     st.is_initial_state = False
                 else:
                     st.is_initial_state = True
+
