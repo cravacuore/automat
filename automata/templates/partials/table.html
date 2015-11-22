@@ -10,38 +10,45 @@
     </tr>
   </thead>
   <tbody>
-    {% for state in automata.states %}
-      {% if state != None %}
+    {% for origin_state in automata.states %}
+      {% if origin_state != None %}
         <tr>
           <td>
-            <input name="radio" type="radio" {% if state.is_initial_state %}checked{% endif %} 
-              onclick="location.href='/state/change/initial/{{state}}'">
+            <input name="radio" type="radio" {% if origin_state.is_initial_state %}checked{% endif %}
+              onclick="location.href='/state/change/initial/{{origin_state}}'">
             </input>
           </td>
           <td>
-            <input type="checkbox" {% if state.is_final_state %}checked{% endif %}
-              onclick="location.href='/state/change/final/{{state}}'">
+            <input type="checkbox" {% if origin_state.is_final_state %}checked{% endif %}
+              onclick="location.href='/state/change/final/{{origin_state}}'">
             </input>
           </td>
-          <td>{{ state }}</td>
+          <td>{{ origin_state }}</td>
           <td>
-            <a class="tiny dropdown button secondary" dropdown-toggle="#state-menu">None</a>
-            <ul id="state-menu" class="menu f-dropdown">
-              {% for state in automata.states %}
-                <li><a href="#">{{state}}</a></li>
+            <select data-prompt="Choose a state..">
+              {% for destination_state in automata.states %}
+              <option value={{destination_state}}
+                {% if destination_state == origin_state.transitions.get('0') %}selected{% endif %}
+                onclick="location.href='/transition/add/{{origin_state}}/0/{{destination_state}}'">
+                  {{destination_state}}
+                </option>
               {% endfor %}
-            </ul>
+            </select>
           </td>
           <td>
-            <a class="tiny dropdown button secondary" dropdown-toggle="#state-menu">None</a>
-            <ul id="state-menu" class="menu f-dropdown">
-              {% for state in automata.states %}
-                <li><a href="#">{{state}}</a></li>
+            <select data-prompt="Choose a state..">
+              {% for destination_state in automata.states %}
+              <option value={{destination_state}}
+                {% if destination_state == origin_state.transitions.get('1') %}selected{% endif %}
+                onclick="location.href='/transition/add/{{origin_state}}/1/{{destination_state}}'">
+                  {{destination_state}}
+                </option>
               {% endfor %}
-            </ul>
+            </select>
           </td>
         </tr>
       {% endif %}
     {% endfor %}
   </tbody>
 </table>
+
