@@ -3,6 +3,7 @@
   <head>
     {% block head %}
       <link rel="stylesheet" href="/static/css/foundation.min.css">
+      <link rel="stylesheet" href="/static/css/foundation-icons/foundation-icons.css">
       <link rel="stylesheet" href="/static/css/normalize.css">
       {# <link rel="stylesheet" href="/static/css/app.css"> #}
     {% endblock %}
@@ -11,10 +12,9 @@
     <br>
     <div class="row">
       {% block content %}{% endblock %}
+
       <hr>
-      <footer class="footer">
-        {% include 'partials/footer.html' %}
-      </footer>
+      {% include 'partials/footer.html' %}
     </div>
 
     {% include 'partials/scripts.html' %}
