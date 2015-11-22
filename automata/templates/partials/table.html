@@ -2,11 +2,11 @@
 <table>
   <thead>
     <tr>
-      <th width="150">Initial</th>
-      <th width="150">Final</th>
-      <th width="150">State</th>
-      <th width="150">0</th>
-      <th width="150">1</th>
+      <th width="130" class="text-center">Initial</th>
+      <th width="130" class="text-center">Final</th>
+      <th width="240" class="text-center">State</th>
+      <th width="200" class="text-center">0</th>
+      <th width="200" class="text-center">1</th>
     </tr>
   </thead>
   <tbody>
@@ -14,16 +14,24 @@
       {% if origin_state != None %}
         <tr>
           <td>
-            <input name="radio" type="radio" {% if origin_state.is_initial_state %}checked{% endif %}
-              onclick="location.href='/state/change/initial/{{origin_state}}'">
-            </input>
+            <div class="text-center">
+              <input name="radio" type="radio" {% if origin_state.is_initial_state %}checked{% endif %}
+                onclick="location.href='/state/change/initial/{{origin_state}}'">
+              </input>
+            </div>
           </td>
           <td>
-            <input type="checkbox" {% if origin_state.is_final_state %}checked{% endif %}
-              onclick="location.href='/state/change/final/{{origin_state}}'">
-            </input>
+            <div class="text-center">
+              <input type="checkbox" {% if origin_state.is_final_state %}checked{% endif %}
+                onclick="location.href='/state/change/final/{{origin_state}}'">
+              </input>
+            </div>
           </td>
-          <td>{{ origin_state }}</td>
+          <td>
+            <div class="text-center">
+              {{ origin_state }}
+            </div>
+          </td>
           <td>
             <select data-prompt="Choose a state..">
               {% for destination_state in automata.states %}

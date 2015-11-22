@@ -5,6 +5,7 @@
   </a>
   {% include 'partials/flash_messages.html' %}
 
+  <div class="row">
   <tabset>
     <tab heading="Table">
       {% block table %}
@@ -14,7 +15,7 @@
     <tab heading="Draw Graph">
       {# TODO #}
     </tab>
-    <div class="large-6 columns">
+    <div class="large-6 columns right">
       <div class="row collapse">
         <div class="small-9 columns">
           <input type="text" placeholder="Input..">
@@ -25,5 +26,6 @@
       </div>
     </div>
   </tabset>
+  </div>
 
 {% endblock %}
