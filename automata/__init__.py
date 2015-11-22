@@ -20,7 +20,14 @@ def index():
 
 @app.route('/validate/<input>')
 def validate(input):
-    return str(automata.validate(input))
+    try:
+        validation = str(automata.validate(input))
+        flash('Valid input path: ' + input, 'success')
+    except Exception:
+        validation = False
+        flash('Invalid input path: ' + input, 'alert')
+
+    return render_template('index.html', automata = automata, validation = validation)
 
 @app.route('/state/add')
 def add_state():
