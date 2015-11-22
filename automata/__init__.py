@@ -18,6 +18,11 @@ automata.add_state(state)
 def index():
     return render_template('index.html', automata = automata)
 
+@app.route('/validate/')
+def empty_input():
+    flash('Please, add some text on input field to validate.', 'warning')
+    return render_template('index.html', automata = automata)
+
 @app.route('/validate/<input>')
 def validate(input):
     if not automata.has_any_final():
