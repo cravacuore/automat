@@ -26,11 +26,11 @@ class State:
 class Automata():
 
     def __init__(self):
-        self.states = []
+        self.states = [None]
         self.current_state = None
 
     def add_state(self, state):
-        state.name = "q" + str(len(self.states))
+        state.name = "q" + str(len(self.states) - 1)
         self.states.append(state)
         if self.current_state == None:
             state.is_initial_state = True
