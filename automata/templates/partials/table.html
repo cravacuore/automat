@@ -14,7 +14,11 @@
     {% for state in automata.states %}
       {% if state != None %}
         <tr>
-          <td><input name="radio" type="radio" {% if state.is_initial_state %}checked{% endif %}></input></td>
+          <td>
+            <input name="radio" type="radio" {% if state.is_initial_state %}checked{% endif %} 
+              onclick="location.href='/state/change/initial/{{state}}'">
+            </input>
+          </td>
           <td>
             <input type="checkbox" {% if state.is_final_state %}checked{% endif %}
               onclick="location.href='/state/change/final/{{state}}'">
