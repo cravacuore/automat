@@ -43,6 +43,14 @@ class ModelTestCase(unittest.TestCase):
         automata.add_state(state)
         self.assertTrue(state in automata.states)
 
+    def test_should_can_remove_states(self):
+        state = State()
+        automata = Automata()
+        automata.add_state(state)
+
+        automata.remove_state(state)
+        self.assertFalse(state in automata.states)
+
     def test_should_return_true_when_validate_with_valid_input(self):
         automata = self.create_automata()
         self.assertTrue(automata.validate("000010111"))
@@ -51,6 +59,14 @@ class ModelTestCase(unittest.TestCase):
         automata = self.create_automata()
         with self.assertRaises(Exception):
             automata.validate("0010011")
+
+    def test_has_any_final_with_new_automata(self):
+        automata = Automata()
+        self.assertFalse(automata.has_any_final())
+
+    def test_has_any_final_with_final_state_automata(self):
+        automata = self.create_automata()
+        self.assertTrue(automata.has_any_final())
 
     def create_automata(self):
         state0 = State(True, False)
