@@ -5,9 +5,9 @@ import json
 from models import *
 
 app = Flask(__name__)
-app.config.from_object('settings')
 
 # TODO - Change
+DEBUG = True
 app.secret_key = "secret_key"
 
 automata = Automata()
