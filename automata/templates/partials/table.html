@@ -7,6 +7,7 @@
       <th width="240" class="text-center">State</th>
       <th width="200" class="text-center">0</th>
       <th width="200" class="text-center">1</th>
+      <th width="40"</th>
     </tr>
   </thead>
   <tbody>
@@ -53,6 +54,13 @@
                 </option>
               {% endfor %}
             </select>
+          </td>
+          <td>
+            <div class="text-center">
+              <a onclick="location.href='/state/remove/{{origin_state}}'">
+                <i class="fi-trash" style="font-size: 160%; color: red"></i>
+              </a>
+            </div>
           </td>
         </tr>
       {% endif %}
