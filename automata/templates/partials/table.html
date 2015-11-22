@@ -2,6 +2,7 @@
   <thead>
     <tr>
       <th width="150">Initial</th>
+      <th width="150">Neutral</th>
       <th width="150">Final</th>
       <th width="150">State</th>
       <th width="150">0</th>
@@ -9,27 +10,29 @@
     </tr>
   </thead>
   <tbody>
-    <!-- TODO for each state -->
+    {% for state in automata.states %}
     <tr>
-      <td><input name="radio" type="radio"></input></td>
-      <td><input type="checkbox"></input></td>
-      <td>q1</td>
+      <td><input name="radio" type="radio" {% if state.is_initial_state() %}checked{% endif %}></input></td>
+      <td><input type="checkbox" {% if state.is_neutral_state() %}checked{% endif %}></input></td>
+      <td><input type="checkbox" {% if state.is_final_state() %}checked{% endif %}></input></td>
+      <td>{{ state }}</td>
       <td>
         <a class="tiny dropdown button secondary" dropdown-toggle="#state-menu">q2</a>
         <ul id="state-menu" class="menu f-dropdown">
-          <li><a href="#">q1</a></li>
-          <li><a href="#">q2</a></li>
-          <li><a href="#">q3</a></li>
+          {% for state in automata.states %}
+            <li><a href="#">{{state}}</a></li>
+          {% endfor %}
         </ul>
       </td>
       <td>
         <a class="tiny dropdown button secondary" dropdown-toggle="#state-menu">q1</a>
         <ul id="state-menu" class="menu f-dropdown">
-          <li><a href="#">q1</a></li>
-          <li><a href="#">q2</a></li>
-          <li><a href="#">q3</a></li>
+          {% for state in automata.states %}
+            <li><a href="#">{{state}}</a></li>
+          {% endfor %}
         </ul>
       </td>
     </tr>
+    {% endfor %}
   </tbody>
 </table>
