@@ -3,24 +3,21 @@
   <h3>Automata Graph Validator</h3>
   {% with messages = get_flashed_messages() %}
     {% if messages %}
-      <ul class=flashes>
-        {% for message in messages %}
-          <li>{{ message }}</li>
-        {% endfor %}
-      </ul>
+      {% for message in messages %}
+        <alert class="success round">{{ message }}</alert>
+      {% endfor %}
     {% endif %}
   {% endwith %}
-  <div>
-    <tabset>
-      <tab heading="Table">
-        {% block table %}
-          {% include 'partials/table.html' %}
-        {% endblock table %}
-      </tab>
-      <tab heading="Draw Graph">
-        {# TODO #}
-      </tab>
-    </tabset>
-</div>
+
+  <tabset>
+    <tab heading="Table">
+      {% block table %}
+        {% include 'partials/table.html' %}
+      {% endblock table %}
+    </tab>
+    <tab heading="Draw Graph">
+      {# TODO #}
+    </tab>
+  </tabset>
 
 {% endblock %}
