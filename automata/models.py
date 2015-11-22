@@ -1,6 +1,6 @@
 
 class State:
-    name = "q1"
+    name = ""
 
     def __init__(self, is_initial_state = False, is_final_state = False):
         self.transitions = {}
@@ -30,6 +30,7 @@ class Automata():
         self.current_state = None
 
     def add_state(self, state):
+        state.name = "q" + str(len(self.states))
         self.states.append(state)
         if self.current_state == None:
             state.is_initial_state = True
