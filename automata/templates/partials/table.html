@@ -16,9 +16,9 @@
         <tr>
           <td><input name="radio" type="radio" {% if state.is_initial_state %}checked{% endif %}></input></td>
           <td>
-            <a href="/state/change/final/{{state}}">
-              <input type="checkbox" {% if state.is_final_state %}checked{% endif %}></input>
-            </a>
+            <input type="checkbox" {% if state.is_final_state %}checked{% endif %}
+              onclick="location.href='/state/change/final/{{state}}'">
+            </input>
           </td>
           <td>{{ state }}</td>
           <td>
