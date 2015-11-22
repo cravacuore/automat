@@ -1,17 +1,10 @@
 
 class State:
 
-    def __init__(self):
+    def __init__(self, is_initial_state = False, is_final_state = False):
         self.transitions = {}
-
-    def is_initial_state(self):
-        return False
-
-    def is_final_state(self):
-        return False
-
-    def is_neutral_state(self):
-        return False
+        self.is_initial_state = is_initial_state
+        self.is_final_state = is_final_state
 
     def add_transition(self, symbol, state):
         self.transitions[symbol] = state
@@ -26,24 +19,6 @@ class State:
             raise Exception("Invalid input!")
 
 
-class InitialState(State):
-
-    def is_initial_state(self):
-        return True
-
-
-class FinalState(State):
-
-    def is_final_state(self):
-        return True
-
-
-class NeutralState(State):
-
-    def is_neutral_state(self):
-        return True
-
-
 class Automata():
 
     def __init__(self):
@@ -53,13 +28,14 @@ class Automata():
     def add_state(self, state):
         self.states.append(state)
         if self.current_state == None:
+            state.is_initial_state = True
             self.current_state = state
 
     def validate(self, input):
         for symbol in input:
             self.current_state = self.current_state.transition_state(symbol)
-        if(self.current_state.is_final_state()):
-            return self.current_state.is_final_state()
+        if(self.current_state.is_final_state):
+            return self.current_state.is_final_state
         else:
             raise Exception("Invalid input!")
 
