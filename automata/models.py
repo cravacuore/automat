@@ -33,6 +33,7 @@ class Automata():
         return any(st for st in self.states if st is not None and st.is_final_state)
 
     def add_state(self, state):
+        # TODO - When state is removed, check for name repetitions
         state.name = "q" + str(len(self.states) - 1)
         self.states.append(state)
         if self.current_state == None:
@@ -44,6 +45,7 @@ class Automata():
         self.states.remove(state)
 
     def validate(self, input):
+        # TODO - Exception if input is empty
         for symbol in input:
             self.current_state = self.current_state.transition_state(symbol)
         if(self.current_state.is_final_state):
