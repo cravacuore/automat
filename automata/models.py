@@ -13,7 +13,7 @@ class State:
         return self.transitions.get(symbol) != None
 
     def transition_state(self, symbol):
-        if self.validate_symbol(symbol):    
+        if self.validate_symbol(symbol):
             return self.transitions.get(symbol)
         else:
             raise Exception("Invalid input!")

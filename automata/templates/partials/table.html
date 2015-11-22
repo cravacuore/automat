@@ -12,9 +12,9 @@
   <tbody>
     {% for state in automata.states %}
     <tr>
-      <td><input name="radio" type="radio" {% if state.is_initial_state() %}checked{% endif %}></input></td>
-      <td><input type="checkbox" {% if state.is_neutral_state() %}checked{% endif %}></input></td>
-      <td><input type="checkbox" {% if state.is_final_state() %}checked{% endif %}></input></td>
+      <td><input name="radio" type="radio" {% if state.is_initial_state %}checked{% endif %}></input></td>
+      <td><input type="checkbox" {% if state.is_neutral_state %}checked{% endif %}></input></td>
+      <td><input type="checkbox" {% if state.is_final_state %}checked{% endif %}></input></td>
       <td>{{ state }}</td>
       <td>
         <a class="tiny dropdown button secondary" dropdown-toggle="#state-menu">q2</a>
