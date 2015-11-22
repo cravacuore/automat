@@ -44,3 +44,16 @@ class Automata():
         else:
             raise Exception("Invalid input!")
 
+    def get_state(self, state):
+        for st in self.states:
+            if st != None:
+                if st.name == str(state):
+                    return st
+                    
+    def make_initial_state(self, state):
+        for st in self.states:
+            if st != None:
+                if str(st) != state:
+                    st.is_initial_state = False
+                else:
+                    st.is_initial_state = True
