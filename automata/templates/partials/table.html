@@ -1,3 +1,5 @@
+<div>
+<a class="small button left" href="/state/add">Add State</a>
 <table>
   <thead>
     <tr>
@@ -13,7 +15,11 @@
       {% if state != None %}
         <tr>
           <td><input name="radio" type="radio" {% if state.is_initial_state %}checked{% endif %}></input></td>
-          <td><input type="checkbox" {% if state.is_final_state %}checked{% endif %}></input></td>
+          <td>
+            <a href="/state/change/final/{{state}}">
+              <input type="checkbox" {% if state.is_final_state %}checked{% endif %}></input>
+            </a>
+          </td>
           <td>{{ state }}</td>
           <td>
             <a class="tiny dropdown button secondary" dropdown-toggle="#state-menu">None</a>
@@ -36,4 +42,4 @@
     {% endfor %}
   </tbody>
 </table>
-<a class="small button" href="/state/add">Add State</a>
+</div>

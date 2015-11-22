@@ -2,5 +2,6 @@
 
 var app = angular.module('Automata Graph Validator', ['mm.foundation']);
 
-angular.module('Automata Graph Validator').controller('HomeTabs', function($scope) {});
+angular.module('Automata Graph Validator').controller('Controller', function($scope) {
+});
 

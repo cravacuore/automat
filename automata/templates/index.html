@@ -1,13 +1,7 @@
 {% extends "layout.html" %}
 {% block content %}
-  <h3>Automata Graph Validator</h3>
-  {% with messages = get_flashed_messages() %}
-    {% if messages %}
-      {% for message in messages %}
-        <alert class="success round">{{ message }}</alert>
-      {% endfor %}
-    {% endif %}
-  {% endwith %}
+  <a href=""><h3>Automata Graph Validator</h3></a>
+  {% include 'partials/flash_messages.html' %}
 
   <tabset>
     <tab heading="Table">

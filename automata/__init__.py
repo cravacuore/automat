@@ -11,6 +11,8 @@ app.debug = True
 app.secret_key = "secret_key"
 
 automata = Automata()
+state = State(True)
+automata.add_state(state)
 
 @app.route("/")
 def index():
@@ -24,7 +26,23 @@ def validate(input):
 def add_state():
     state = State()
     automata.add_state(state)
-    flash('State added')
+    flash(str(state) + " -> " + 'State added', 'success')
+    return redirect(url_for('index'))
+
+@app.route('/state/change/final/<state>')
+def change_state_final(state):
+    for st in automata.states:
+        if st != None:
+            if st.name == str(state):
+                index = automata.states.index(st)
+                break
+
+    state = automata.states[index]
+    state.is_final_state = not state.is_final_state
+    if state.is_final_state:
+        flash('State ' + str(state) + ' changed to Final', 'info')
+    else:
+        flash('State ' + str(state) + ' changed to Neutral', 'info')
     return redirect(url_for('index'))
 
 if __name__ == "__main__":
