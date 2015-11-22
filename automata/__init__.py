@@ -7,17 +7,13 @@ from models import *
 app = Flask(__name__)
 
 # TODO - Change
-DEBUG = True
+app.debug = True
 app.secret_key = "secret_key"
 
 automata = Automata()
 
 @app.route("/")
 def index():
-    state0 = State(True, True)
-    state1 = State(False, True)
-    automata.add_state(state0)
-    automata.add_state(state1)
     return render_template('index.html', automata = automata)
 
 @app.route('/validate/<input>')
