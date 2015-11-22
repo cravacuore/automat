@@ -31,18 +31,18 @@ def add_state():
 
 @app.route('/state/change/final/<state>')
 def change_state_final(state):
-    for st in automata.states:
-        if st != None:
-            if st.name == str(state):
-                index = automata.states.index(st)
-                break
-
-    state = automata.states[index]
-    state.is_final_state = not state.is_final_state
-    if state.is_final_state:
+    state_to_change = automata.get_state(state)
+    state_to_change.is_final_state = not state_to_change.is_final_state
+    if state_to_change.is_final_state:
         flash('State ' + str(state) + ' changed to Final', 'info')
     else:
         flash('State ' + str(state) + ' changed to Neutral', 'info')
+    return redirect(url_for('index'))
+
+@app.route('/state/change/initial/<state>')
+def change_state_initial(state):
+    automata.make_initial_state(str(state))
+    flash('State ' + str(state) + ' changed to Initial', 'info')
     return redirect(url_for('index'))
 
 if __name__ == "__main__":
