@@ -20,6 +20,9 @@ def index():
 
 @app.route('/validate/<input>')
 def validate(input):
+    if not automata.has_any_final():
+        flash('Must have at least one State selected as Final', 'warning')
+        return render_template('index.html', automata = automata)
     try:
         validation = str(automata.validate(input))
         flash('Valid input path: ' + input, 'success')
@@ -33,7 +36,14 @@ def validate(input):
 def add_state():
     state = State()
     automata.add_state(state)
-    flash(str(state) + " -> " + 'State added', 'success')
+    flash('State \'' + str(state) + '\' added', 'success')
+    return redirect(url_for('index'))
+
+@app.route('/state/remove/<state>')
+def remove_state(state):
+    state_to_remove = automata.get_state(state)
+    automata.remove_state(state_to_remove)
+    flash('State \'' + str(state_to_remove) + '\' has been removed', 'alert')
     return redirect(url_for('index'))
 
 @app.route('/state/change/final/<state>')
