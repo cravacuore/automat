@@ -29,12 +29,19 @@ class Automata():
         self.states = [None]
         self.current_state = None
 
+    def has_any_final(self):
+        return any(st for st in self.states if st is not None and st.is_final_state)
+
     def add_state(self, state):
         state.name = "q" + str(len(self.states) - 1)
         self.states.append(state)
         if self.current_state == None:
             state.is_initial_state = True
             self.current_state = state
+
+    def remove_state(self, state):
+        # TODO - Exception if state does not exists
+        self.states.remove(state)
 
     def validate(self, input):
         for symbol in input:
