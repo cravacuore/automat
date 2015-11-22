@@ -37,14 +37,15 @@
             </div>
           </td>
 
+          <!-- for generates columns for automata dictionary [0,1]. Needs refactor if dictionary changes -->
           {% for transition_symbol in range(2) %}
             <td>
               <select data-prompt="Choose a state..">
                 {% for destination_state in automata.states %}
-                <option value={{destination_state}}
-                {% if destination_state == origin_state.transitions.get(transition_symbol) %}selected{% endif %}
-                onclick="location.href='/transition/add/{{origin_state}}/{{transition_symbol}}/{{destination_state}}'">
-                    {{destination_state}}
+                  <option value={{destination_state}}
+                    {% if destination_state == origin_state.transitions.get(transition_symbol) %}selected{% endif %}
+                    onclick="location.href='/transition/add/{{origin_state}}/{{transition_symbol}}/{{destination_state}}'">
+                      {{destination_state}}
                   </option>
                 {% endfor %}
               </select>
