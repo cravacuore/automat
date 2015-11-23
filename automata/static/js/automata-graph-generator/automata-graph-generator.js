@@ -1,24 +1,36 @@
 
 var draw_graph = function(automata){
-    
+
     var states_graphs = [];
 
-    var canvas = document.getElementById('graph-canvas');
-    var ctx = canvas.getContext('2d');
-    var x = 150;
+    var canvas  = document.getElementById('graph-canvas');
+    var ctx     = canvas.getContext('2d');
+    var x       = 150;
     var centerY = canvas.height / 2;
     var radius = 20;
     var height_arrow = 20;
+    var initial_state_circle;
 
     function neighbors(origin, destination){
         return Math.abs(origin.circle.x - destination.circle.x) == 100;
     };
 
     function Circle(ctx, x, y, radius){
-       this.ctx = ctx;
-       this.x = x;
-       this.y = y;
+       this.ctx    = ctx;
+       this.x      = x;
+       this.y      = y;
        this.radius = radius;
+    }
+
+    function draw_initial_state_triangle(){
+      ctx.beginPath();
+      ctx.moveTo(initial_state_circle.x - 22, initial_state_circle.y);
+      ctx.lineTo(initial_state_circle.x - 40, initial_state_circle.y - 20);
+      ctx.lineTo(initial_state_circle.x - 40, initial_state_circle.y + 20);
+      ctx.closePath();
+      ctx.stroke();
+      ctx.fillStyle = 'white';
+      ctx.fill();
     }
 
     Circle.prototype.draw = function(){
@@ -30,28 +42,28 @@ var draw_graph = function(automata){
     };
 
     function NameState(ctx, name, x, y){
-        this.ctx = ctx;
+        this.ctx  = ctx;
         this.name = name;
-        this.x = x;
-        this.y = y;
+        this.x    = x;
+        this.y    = y;
     }
 
     NameState.prototype.draw = function(){
-        this.ctx.textAlign = 'center';
+        this.ctx.textAlign    = 'center';
         this.ctx.textBaseline = 'middle';
-        this.ctx.fillStyle = 'black';
+        this.ctx.fillStyle    = 'black';
         this.ctx.fillText(this.name, this.x, this.y);
     };
 
     function State(name, is_initial, is_final, transition_by_0, transition_by_1, ctx){
-        this.ctx = ctx;
-        this.name = new NameState(this.ctx, name, x, centerY);
-        this.circle = new Circle(this.ctx, x, centerY,radius);
-        this.is_initial = is_initial;
-        this.is_final = is_final;
+        this.ctx             = ctx;
+        this.name            = new NameState(this.ctx, name, x, centerY);
+        this.circle          = new Circle(this.ctx, x, centerY,radius);
+        this.is_initial      = is_initial;
+        this.is_final        = is_final;
         this.transition_by_0 = transition_by_0;
         this.transition_by_1 = transition_by_1;
-        this.x = x;
+        this.x               = x;
         x = x + 100;
     }
 
@@ -61,7 +73,7 @@ var draw_graph = function(automata){
         this.ctx.stroke();
         this.ctx.beginPath();
         if(this.is_final){
-            new Circle(this.ctx, x - 100, centerY,radius - 5).draw();
+          new Circle(this.ctx, x - 100, centerY, radius - 5).draw();
         }
         this.name.draw();
         this.ctx.stroke();
@@ -120,7 +132,7 @@ var draw_graph = function(automata){
         this.ctx.lineTo(this.fromx - 30-headlen*Math.cos(angle-Math.PI/6),this.fromy -headlen*Math.sin(angle-Math.PI/6));
         this.ctx.moveTo(this.fromx - 30, this.fromy);
         this.ctx.lineTo(this.fromx - 30-headlen*Math.cos(angle+Math.PI/6),this.fromy -headlen*Math.sin(angle+Math.PI/6));
-    };        
+    };
 
     function CurvedLine(fromx, fromy, tox, toy, symbol, ctx){
         this.fromx = fromx;
@@ -172,18 +184,24 @@ var draw_graph = function(automata){
     function load_states(){
         states_graphs = [];
         for(i = 0; i < automata.states.length; i++){
-            states_graphs.push(new State(automata.states[i].name, 
-                    automata.states[i].is_initial_state, 
-                    automata.states[i].is_final_state,
-                    automata.states[i].transition_by_0,
-                    automata.states[i].transition_by_1, 
-                    ctx));
+          var state =
+            new State(automata.states[i].name,
+                  automata.states[i].is_initial_state,
+                  automata.states[i].is_final_state,
+                  automata.states[i].transition_by_0,
+                  automata.states[i].transition_by_1,
+                  ctx)
+          states_graphs.push(state);
+          if(automata.states[i].is_initial_state){
+            initial_state_circle = state.circle;
+          }
         }
     };
 
     function draw(){
         draw_states();
         draw_transitions();
+        draw_initial_state_triangle();
     };
 
     function draw_states(){
