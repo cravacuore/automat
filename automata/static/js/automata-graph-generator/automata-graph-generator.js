@@ -23,7 +23,7 @@ var draw_graph = function(automata){
 
     function draw_initial_state_triangle(){
       ctx.beginPath();
-      ctx.moveTo(initial_state_circle.x - 20, initial_state_circle.y);
+      ctx.moveTo(initial_state_circle.x - 22, initial_state_circle.y);
       ctx.lineTo(initial_state_circle.x - 40, initial_state_circle.y - 20);
       ctx.lineTo(initial_state_circle.x - 40, initial_state_circle.y + 20);
       ctx.closePath();
@@ -72,7 +72,7 @@ var draw_graph = function(automata){
         this.ctx.stroke();
         this.ctx.beginPath();
         if(this.is_final){
-            new Circle(this.ctx, x - 100, centerY,radius - 5).draw();
+          new Circle(this.ctx, x - 100, centerY, radius - 5).draw();
         }
         this.name.draw();
         this.ctx.stroke();
