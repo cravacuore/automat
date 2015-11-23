@@ -28,6 +28,8 @@ def serialize_state(state):
         'name': str(state),
         'is_initial_state': int(state.is_initial_state),
         'is_final_state': int(state.is_final_state),
+        'transition_by_0': str(state.transitions.get('0')),
+        'transition_by_1': str(state.transitions.get('1'))
     }
     return ser
 

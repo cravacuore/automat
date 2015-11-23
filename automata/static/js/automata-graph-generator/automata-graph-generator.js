@@ -1,6 +1,8 @@
 
 var draw_graph = function(automata){
     
+    var states_graphs = [];
+
     var canvas = document.getElementById('graph-canvas');
     var ctx = canvas.getContext('2d');
     var x = 150;
@@ -40,12 +42,14 @@ var draw_graph = function(automata){
         this.ctx.fillText(this.name, this.x, this.y);
     };
 
-    function State(name, is_initial, is_final, ctx){
+    function State(name, is_initial, is_final, transition_by_0, transition_by_1, ctx){
         this.ctx = ctx;
         this.name = new NameState(this.ctx, name, x, centerY);
         this.circle = new Circle(this.ctx, x, centerY,radius);
         this.is_initial = is_initial;
         this.is_final = is_final;
+        this.transition_by_0 = transition_by_0;
+        this.transition_by_1 = transition_by_1;
         this.x = x;
         x = x + 100;
     }
@@ -147,17 +151,58 @@ var draw_graph = function(automata){
         this.ctx.stroke();
     };
 
-   
-
-    function draw_states(){
-        for(i = 0; i < automata.states.length; i++) {
-            new State(automata.states[i].name, 
-                        automata.states[i].is_initial_state, 
-                        automata.states[i].is_final_state, 
-                        ctx).draw();
+    function load_states(){
+        states_graphs = [];
+        for(i = 0; i < automata.states.length; i++){
+            states_graphs.push(new State(automata.states[i].name, 
+                    automata.states[i].is_initial_state, 
+                    automata.states[i].is_final_state,
+                    automata.states[i].transition_by_0,
+                    automata.states[i].transition_by_1, 
+                    ctx));
         }
     };
 
-    draw_states();
+    function draw(){
+        draw_states();
+        draw_transitions();
+    };
+
+    function draw_states(){
+        for(i = 0; i < states_graphs.length; i++){
+            var state = states_graphs[i];
+            state.draw();
+        }
+    };
+
+    function draw_transitions(){
+        var state;
+        for(i = 0; i < states_graphs.length; i++){
+            state = states_graphs[i];
+            draw_transition(state, state.transition_by_0);
+            draw_transition(state, state.transition_by_1);
+        }
+    }
+
+    function draw_transition(state, transition){
+        if((transition != 'None')){
+            var destination = get_state(transition);
+            new Transition(state, destination, ctx).draw();       
+        }
+    };
+
+    function get_state(name){
+        var state;
+        for(j = 0; j < states_graphs.length; j++){
+            state = states_graphs[j];
+            if(state.name.name == name){
+               return state;
+            }
+        }
+    };
+
+
+    load_states();
+    draw();
 
 };
