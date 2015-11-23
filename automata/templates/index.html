@@ -13,7 +13,9 @@
       {% endblock table %}
     </tab>
     <tab heading="Draw Graph">
-      {# TODO #}
+      {% block graph %}
+        {% include 'partials/graph.html' %}
+      {% endblock graph %}
     </tab>
 
     {% include 'partials/input_validation.html' %}
