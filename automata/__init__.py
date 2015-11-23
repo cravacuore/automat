@@ -15,6 +15,22 @@ automata = Automata()
 state = State(True)
 automata.add_state(state)
 
+
+def serialize_automata(automata):
+    ser = {'states':[]}
+    for st in automata.states:
+        if st != None:
+            ser['states'].append(serialize_state(st))
+    return ser
+
+def serialize_state(state):
+    ser = {
+        'name': str(state),
+        'is_initial_state': int(state.is_initial_state),
+        'is_final_state': int(state.is_final_state),
+    }
+    return ser
+
 @app.route("/reset")
 def reset():
     # Gets global automata instance
@@ -27,7 +43,8 @@ def reset():
 
 @app.route("/")
 def index():
-    return render_template('index.html', automata = automata)
+    serialization = serialize_automata(automata)
+    return render_template('index.html', automata = automata, serialization = serialization)
 
 @app.route('/validate/')
 def empty_input():
@@ -91,6 +108,7 @@ def add_transition(origin, symbol, destination):
     else:
         flash('Added transition function: (' + str(origin_state) + ', ' + str(symbol) + ') = ' + str(destination_state), 'success')
     return redirect(url_for('index'))
+
 
 if __name__ == "__main__":
     app.run()
