@@ -30,6 +30,9 @@ class Automata():
         self.current_state = None
         self.states        = [None]
 
+    def has_any_initial(self):
+        return any(st for st in self.states if st is not None and st.is_initial_state)
+
     def has_any_final(self):
         return any(st for st in self.states if st is not None and st.is_final_state)
 
