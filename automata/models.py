@@ -1,11 +1,11 @@
 
 class State:
-    name = ""
 
-    def __init__(self, is_initial_state = False, is_final_state = False):
-        self.transitions = {}
+    def __init__(self, is_initial_state = False, is_final_state = False, name = "q"):
+        self.name             = name
+        self.transitions      = {}
         self.is_initial_state = is_initial_state
-        self.is_final_state = is_final_state
+        self.is_final_state   = is_final_state
 
     def add_transition(self, symbol, state):
         self.transitions[symbol] = state
@@ -30,11 +30,14 @@ class Automata():
         self.current_state = None
         self.states        = [None]
 
+    def has_any_initial(self):
+        return any(st for st in self.states if st is not None and st.is_initial_state)
+
     def has_any_final(self):
         return any(st for st in self.states if st is not None and st.is_final_state)
 
     def add_state(self, state):
-        state.name = "q" + str(self.count)
+        state.name = state.name + str(self.count)
         self.states.append(state)
         self.count += 1
         if self.current_state == None:

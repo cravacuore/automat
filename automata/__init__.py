@@ -53,7 +53,10 @@ def empty_input():
 
 @app.route('/validate/<input>')
 def validate(input):
-    if not automata.has_any_final():
+    if not automata.has_any_initial():
+        flash('Must have at least one State selected as Initial', 'warning')
+        return render_template('index.html', automata = automata)
+    elif not automata.has_any_final():
         flash('Must have at least one State selected as Final', 'warning')
         return render_template('index.html', automata = automata)
     try:
