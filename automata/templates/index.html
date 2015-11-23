@@ -12,12 +12,13 @@
         {% include 'partials/table.html' %}
       {% endblock table %}
     </tab>
-    <tab heading="Draw Graph">
+    {% with atm = serialization %}
+    <tab heading="Draw Graph" onclick="draw_graph({{atm}})">
       {% block graph %}
         {% include 'partials/graph.html' %}
       {% endblock graph %}
     </tab>
-
+    {% endwith %}
     {% include 'partials/input_validation.html' %}
   </tabset>
   </div>
