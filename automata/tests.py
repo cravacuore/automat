@@ -60,6 +60,14 @@ class ModelTestCase(unittest.TestCase):
         with self.assertRaises(Exception):
             automata.validate("0010011")
 
+    def test_has_any_initial_with_new_automata(self):
+        automata = Automata()
+        self.assertFalse(automata.has_any_initial())
+
+    def test_has_any_initial_with_neutral_state_automata(self):
+        automata = self.create_automata()
+        self.assertTrue(automata.has_any_initial())
+
     def test_has_any_final_with_new_automata(self):
         automata = Automata()
         self.assertFalse(automata.has_any_final())
