@@ -43,13 +43,15 @@ class Automata():
 
     def remove_state(self, state):
         if state is not None:
-            self.states.remove(state)
+                self.states.remove(state)
 
     def validate(self, input):
         for symbol in input:
             self.current_state = self.current_state.transition_state(symbol)
         if(self.current_state.is_final_state):
-            return self.current_state.is_final_state
+            validation_result = self.current_state.is_final_state
+            self.current_state = self.states[1]
+            return validation_result
         else:
             raise Exception("Invalid input!")
 
@@ -66,5 +68,6 @@ class Automata():
                 if str(st) != state:
                     st.is_initial_state = False
                 else:
+                    self.current_state = st
                     st.is_initial_state = True
 
