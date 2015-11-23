@@ -2,10 +2,10 @@
 class State:
 
     def __init__(self, is_initial_state = False, is_final_state = False, name = "q"):
-        self.name = name
-        self.transitions = {}
+        self.name             = name
+        self.transitions      = {}
         self.is_initial_state = is_initial_state
-        self.is_final_state = is_final_state
+        self.is_final_state   = is_final_state
 
     def add_transition(self, symbol, state):
         self.transitions[symbol] = state
