@@ -26,19 +26,20 @@ class State:
 class Automata():
 
     def __init__(self):
-        self.states = [None]
+        self.count         = 0
         self.current_state = None
+        self.states        = [None]
 
     def has_any_final(self):
         return any(st for st in self.states if st is not None and st.is_final_state)
 
     def add_state(self, state):
-        # TODO - When state is removed, check for name repetitions
-        state.name = "q" + str(len(self.states) - 1)
+        state.name = "q" + str(self.count)
         self.states.append(state)
+        self.count += 1
         if self.current_state == None:
             state.is_initial_state = True
-            self.current_state = state
+            self.current_state     = state
 
     def remove_state(self, state):
         if state is not None:
