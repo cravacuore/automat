@@ -35,13 +35,14 @@ def serialize_state(state):
 
 @app.route("/reset")
 def reset():
+    serialization = serialize_automata(automata)
     # Gets global automata instance
     global automata
     # Reset automata
     automata = Automata()
     state = State(True)
     automata.add_state(state)
-    return render_template('index.html', automata = automata)
+    return render_template('index.html', automata = automata, serialization = serialization)
 
 @app.route("/")
 def index():
@@ -50,17 +51,19 @@ def index():
 
 @app.route('/validate/')
 def empty_input():
+    serialization = serialize_automata(automata)
     flash('Please, add some text on input field to validate.', 'warning')
-    return render_template('index.html', automata = automata)
+    return render_template('index.html', automata = automata, serialization = serialization)
 
 @app.route('/validate/<input>')
 def validate(input):
+    serialization = serialize_automata(automata)
     if not automata.has_any_initial():
         flash('Must have at least one State selected as Initial', 'warning')
-        return render_template('index.html', automata = automata)
+        return render_template('index.html', automata = automata, serialization = serialization)
     elif not automata.has_any_final():
         flash('Must have at least one State selected as Final', 'warning')
-        return render_template('index.html', automata = automata)
+        return render_template('index.html', automata = automata, serialization = serialization)
     try:
         validation = str(automata.validate(input))
         flash('Valid input path: ' + input, 'success')
@@ -68,7 +71,7 @@ def validate(input):
         validation = False
         flash('Invalid input path: ' + input, 'alert')
 
-    return render_template('index.html', automata = automata, validation = validation)
+    return render_template('index.html', automata = automata, validation = validation, serialization = serialization)
 
 @app.route('/state/add')
 def add_state():
