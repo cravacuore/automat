@@ -9,10 +9,21 @@ app = Flask(__name__)
 # TODO - Change
 app.debug = True
 app.secret_key = "secret_key"
+#
 
 automata = Automata()
 state = State(True)
 automata.add_state(state)
+
+@app.route("/reset")
+def reset():
+    # Gets global automata instance
+    global automata
+    # Reset automata
+    automata = Automata()
+    state = State(True)
+    automata.add_state(state)
+    return render_template('index.html', automata = automata)
 
 @app.route("/")
 def index():
